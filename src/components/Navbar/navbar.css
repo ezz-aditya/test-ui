@@ -1,0 +1,132 @@
+.navbar {
+  position: relative;
+  width: min(900px, calc(100% - 48px));
+  height: 72px;
+  margin: 24px auto;
+  border-radius: 18px;               /* rounded rectangle, not a pill */
+  background: rgba(255, 255, 255, 0.045);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.navbar-content {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  color: white;
+}
+
+/* ---------- Logo ---------- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-mark {
+  width: 32px;
+  height: 24px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: "gothic";
+  line-height: 1;
+}
+
+/* "ui" – light lavender sampled from the background image glow,
+   bright enough to stay readable on the purple glass */
+.logo h1 span {
+  background: linear-gradient(90deg, #e9cfff 0%, #c9a2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---------- Right side ---------- */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* GitHub liquid-glass button: rounded square like the reference */
+.github-button {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.github-button:hover {
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.github-button svg {
+  position: relative;
+  z-index: 5;
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 900px) {
+  .navbar {
+    width: calc(100% - 40px);
+    height: 64px;
+    margin: 18px auto 0;
+  }
+  .navbar-content { padding: 0 22px; }
+  .logo h1 { font-size: 1.35rem; }
+  .logo-mark { width: 28px; height: 21px; }
+  .github-button { width: 34px; height: 34px; }
+  .github-button svg { width: 18px; height: 18px; }
+}
+
+/* ---------- Phone ---------- */
+@media (max-width: 600px) {
+  .navbar {
+    width: calc(100% - 24px);
+    height: 58px;
+    margin: 12px auto 0;
+    border-radius: 16px;
+  }
+  .navbar-content { padding: 0 16px; }
+  .logo { gap: 9px; }
+  .logo h1 { font-size: 1.2rem; }
+  .logo-mark { width: 25px; height: 19px; }
+  .github-button { width: 32px; height: 32px; border-radius: 9px; }
+  .github-button svg { width: 17px; height: 17px; }
+}
+
+/* ---------- Small phones ---------- */
+@media (max-width: 380px) {
+  .navbar {
+    width: calc(100% - 16px);
+    height: 54px;
+    margin-top: 8px;
+  }
+  .navbar-content { padding: 0 13px; }
+  .logo h1 { font-size: 1.1rem; }
+  .github-button { width: 30px; height: 30px; }
+  .github-button svg { width: 16px; height: 16px; }
+}

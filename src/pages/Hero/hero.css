@@ -1,0 +1,185 @@
+@font-face {
+  font-family: "Century Gothic";
+  src: url("../../assets/fonts/centurygothic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Same family, real bold weight (no separate family name needed) */
+@font-face {
+  font-family: "Century Gothic";
+  src: url("../../assets/fonts/centurygothic_bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.hero {
+  /* Palette sampled from Purple_Horizon_Dunes.png */
+  --night: #07050f;
+  --indigo: #1b1736;
+  --plum: #3b1668;
+  --violet: #7a2cb0;
+  --orchid: #c25ad6;
+  --glow: #e98ae6;
+  --accent: #e1b1ff; /* light lavender accent for Fast. / Beautiful. */
+  --lavender: #cdb8ff;
+  --ink: #f4ecff;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;      /* content vertically centered */
+  justify-content: center;  /* and horizontally centered */
+  /* equal top/bottom padding keeps content in the exact middle; top also clears the navbar */
+  padding: 7rem 1.25rem;
+  font-family: "Century Gothic", "Questrial", "Avenir Next", system-ui, sans-serif;
+  color: var(--ink);
+  text-align: center;
+  background-color: var(--night);
+}
+
+/* ---------- Background ---------- */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+/* keeps headline readable over the bright horizon glow */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    70% 55% at 50% 38%,
+    rgb(7 5 15 / 0.45),
+    rgb(7 5 15 / 0) 100%
+  );
+}
+/* blends into your footer's dark curved section */
+.hero__fade {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 20%;
+  background: linear-gradient(180deg, transparent, var(--night));
+}
+
+/* ---------- Content ---------- */
+.hero__content {
+  width: 100%;
+  max-width: 54rem;
+}
+
+.hero__title {
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 6.2vw, 4.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 24px rgb(7 5 15 / 0.55);
+  text-wrap: balance;
+}
+.hero__line { display: block; }
+.tone-light { color: var(--ink); }
+.tone-dark  { color: var(--accent); text-shadow: 0 2px 24px rgb(7 5 15 / 0.6), 0 0 30px rgb(225 177 255 / 0.3); }
+
+.hero__subtitle {
+  max-width: 40rem;
+  margin: 1.75rem auto 0;
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  line-height: 1.7;
+  color: rgb(244 236 255 / 0.78);
+  text-wrap: pretty;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  line-height: 1;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:focus-visible { outline: 2px solid var(--lavender); outline-offset: 3px; }
+.btn svg { transition: transform 0.2s ease; }
+.btn:hover svg:last-child { transform: translateX(3px); }
+
+.btn--primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--violet), var(--orchid));
+  box-shadow: 0 8px 24px rgb(122 44 176 / 0.45), inset 0 0 0 1px rgb(255 255 255 / 0.15);
+}
+
+.btn-mobile{
+  display: none;
+}
+
+.btn--light {
+  color: var(--night);
+  background: linear-gradient(135deg, #f4ecff, var(--lavender));
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.3);
+}
+
+/* ---------- Entrance ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__line,
+  .hero__subtitle,
+  .hero__actions {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: hero-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+  .hero__line:nth-child(1) { animation-delay: 0.05s; }
+  .hero__line:nth-child(2) { animation-delay: 0.2s; }
+  .hero__subtitle          { animation-delay: 0.4s; }
+  .hero__actions           { animation-delay: 0.55s; }
+
+  @keyframes hero-in {
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__line { display: inline; }
+  .btn-desktop{
+    display: none;
+  }
+
+ 
+
+  .btn-mobile{
+    display: inline-flex;
+  }
+}
+
+/* ---------- Bold accent words ---------- */
+.bold-font { font-weight: 700; }
+
+/* ---------- Navbar wrapper (independent of your navbar's own class) ---------- */
+.hero__nav {
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100% - 2.5rem, 62rem);
+  z-index: 10;
+}
